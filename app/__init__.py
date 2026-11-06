@@ -1,4 +1,5 @@
 import os
+import tempfile
 from flask import Flask, jsonify, send_from_directory, request
 from flask_compress import Compress
 from .config import Config
@@ -8,7 +9,7 @@ compress = Compress()
 
 def create_app(config_class=Config):
     app = Flask(__name__, static_folder=config_class.STATIC_FOLDER, static_url_path="",
-                instance_path="/tmp/crm-instance" if os.environ.get("VERCEL") else None)
+                instance_path=os.path.join(tempfile.gettempdir(), "crm-instance") if os.environ.get("VERCEL") else None)
     app.config.from_object(config_class)
 
     # Initialize extensions
