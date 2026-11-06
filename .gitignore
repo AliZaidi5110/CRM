@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.db
+*.db-*
+*.sqlite*
+*.log
+uploads/
+.env
+.env.*
+!.env.example
+.local-secrets.json
+.venv/
+venv/
+.pytest_cache/
+.codex/
+.agents/

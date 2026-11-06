@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CallPro CRM — Customer & Follow-up Management</title>
+  <meta name="description" content="A simple customer database for managing lead details, callbacks, and Team Lead follow-up." />
+  <meta name="theme-color" content="#6366F1" />
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Design System & View Stylesheets -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+  <link rel="stylesheet" href="/css/friendly.css?v=38" />
+</head>
+<body>
+  <!-- Master Application Root -->
+  <div id="app-root"></div>
+
+  <!-- Core Architecture Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/db.js"></script>
+  <script src="/js/sync.js"></script>
+  <script src="/js/auth.js"></script>
+
+  <!-- Reusable Components -->
+  <script src="/js/components/toast.js"></script>
+  <script src="/js/components/modal.js"></script>
+  <script src="/js/components/navbar.js?v=38"></script>
+  <script src="/js/components/sidebar.js?v=38"></script>
+
+  <!-- View Controllers -->
+  <script src="/js/views/dashboard.js?v=38"></script>
+  <script src="/js/views/leads.js?v=35"></script>
+  <script src="/js/views/customer_profile.js?v=38"></script>
+  <script src="/js/views/callbacks.js?v=38"></script>
+  <script src="/js/views/lead_transfer.js?v=28"></script>
+  <script src="/js/views/reports.js"></script>
+  <script src="/js/views/teams.js"></script>
+  <script src="/js/views/users.js?v=34"></script>
+  <script src="/js/views/audit.js"></script>
+  <script src="/js/views/import_export.js?v=29"></script>
+  <script src="/js/views/contracts.js"></script>
+  <script src="/js/views/finance.js?v=29"></script>
+  <script src="/js/views/employee_finance.js?v=32"></script>
+
+  <!-- Master Router -->
+  <script src="/js/app.js?v=38"></script>
+</body>
+</html>
