@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, send_from_directory, request
 from flask_compress import Compress
 from .config import Config
 from .models import db
@@ -13,6 +13,15 @@ def create_app(config_class=Config):
     # Initialize extensions
     db.init_app(app)
     compress.init_app(app)
+
+    @app.before_request
+    def check_cloud_configuration():
+        if os.environ.get("VERCEL") and request.path.startswith("/api/"):
+            missing = [name for name in ("DATABASE_URL", "SECRET_KEY", "JWT_SECRET_KEY") if not os.environ.get(name)]
+            if missing:
+                return jsonify(error="Cloud setup incomplete", message="The administrator must configure the cloud database and signing keys before CRM access is available."), 503
+            if request.files:
+                return jsonify(error="Cloud file storage is not configured", message="Document uploads are unavailable until persistent cloud file storage is connected."), 503
 
     # Ensure upload directory exists
     os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
