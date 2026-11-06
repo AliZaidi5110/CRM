@@ -7,7 +7,8 @@ from .models import db
 compress = Compress()
 
 def create_app(config_class=Config):
-    app = Flask(__name__, static_folder=config_class.STATIC_FOLDER, static_url_path="")
+    app = Flask(__name__, static_folder=config_class.STATIC_FOLDER, static_url_path="",
+                instance_path="/tmp/crm-instance" if os.environ.get("VERCEL") else None)
     app.config.from_object(config_class)
 
     # Initialize extensions
@@ -24,7 +25,8 @@ def create_app(config_class=Config):
                 return jsonify(error="Cloud file storage is not configured", message="Document uploads are unavailable until persistent cloud file storage is connected."), 503
 
     # Ensure upload directory exists
-    os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+    if not os.environ.get("VERCEL"):
+        os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
     # CORS Headers
     @app.after_request

@@ -41,7 +41,7 @@ class Config:
     # Database: Default to SQLite in project directory, configurable to PostgreSQL
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "DATABASE_URL",
-        f"sqlite:///{os.path.join(BASE_DIR, 'crm.db')}"
+        "sqlite:///:memory:" if os.environ.get("VERCEL") else f"sqlite:///{os.path.join(BASE_DIR, 'crm.db')}"
     )
     if SQLALCHEMY_DATABASE_URI.startswith(("postgres://", "postgresql://")):
         SQLALCHEMY_DATABASE_URI = "postgresql+psycopg://" + SQLALCHEMY_DATABASE_URI.split("://", 1)[1]
