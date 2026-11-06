@@ -1,2 +1,5 @@
 [tool.vercel]
 entrypoint = "vercel_entry:app"
+
+[tool.vercel.scripts]
+build = "python build_static.py"

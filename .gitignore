@@ -12,5 +12,6 @@ uploads/
 .venv/
 venv/
 .pytest_cache/
+public/
 .codex/
 .agents/
