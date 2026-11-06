@@ -1,51 +1,57 @@
-# CallPro CRM — Multi-Team Call Center Enterprise Platform
+# CallPro CRM — Next.js
 
-A production-grade, offline-first, multi-team Call Center CRM platform built to manage cold calling, leads, customers, callbacks, chronological conversations, team assignments, team leaders, agents, and management reporting with granular RBAC, audit logs, CSV import/export, and VoIP/AI integrations.
+CallPro now runs on Next.js 16, React 19 and TypeScript. All `/api/*` endpoints execute in Node.js; Python and Flask are not part of the runtime. Existing screen controllers, styling, hash links and the IndexedDB cache are retained behind a Next.js client component. Individual screens have not been rewritten into React components.
 
----
+## Run locally
 
-## 🚀 Quick Start
+Install Node.js 22.13 or newer, run `npm ci`, then `npm run dev`. Open http://localhost:3000. Existing `crm.db` and `uploads/contracts` are used locally and excluded from Git. No database migration runs automatically at startup or deployment.
 
-### 1. Launch the CRM Server
-```powershell
-& "C:\Program Files\PostgreSQL\17\pgAdmin 4\python\python.exe" run.py
-```
-Open your browser at: **`http://127.0.0.1:5050`** (or `5000` if custom PORT set)
+For a fresh database, copy `.env.example` to `.env.local`, set `ADMIN_EMAIL` and `ADMIN_PASSWORD` (at least 12 characters), and run `npm run db:init`. This seeds roles, permissions, statuses and dispositions, and creates the first administrator only if no users exist. It creates no demo accounts or customer records. Existing bcrypt password hashes remain compatible.
 
-### 2. Pre-Configured Test Accounts (Section 62)
-| Role | Username | Password | Assigned Team | Permissions Scope |
-|---|---|---|---|---|
-| **Super Admin** | `admin` | `admin123` | All Teams | Unrestricted company-wide |
-| **Team Leader A** | `leader_a` | `leader123` | Team A | Full Team A leads & agents |
-| **Team Leader B** | `leader_b` | `leader123` | Team B | Full Team B leads & agents |
-| **Agent 1 (Ali)** | `agent_ali` | `agent123` | Team A | Own leads + Team A leads |
-| **Agent 2 (Ahmed)**| `agent_ahmed` | `agent123` | Team A | Own leads + Team A leads |
-| **Agent 3 (Sara)** | `agent_sara` | `agent123` | Team B | Own leads + Team B leads |
+## Vercel and Supabase
 
----
+`vercel.json` selects Next.js, `npm ci`, and `npm run build`. The homepage is prerendered independently of the database. Missing cloud configuration produces an API setup error rather than a homepage crash.
 
-## 🏗️ Architecture & Features
+Set these server-only environment variables in Vercel:
 
-### 1. Offline-First Architecture (Sections 24–27)
-- **Local IndexedDB (`CallProCRM_DB`)**: Stores customers, calls, callbacks, conversations, and metadata locally.
-- **Sync Queue**: Captures offline mutations with timestamp and local UUIDs.
-- **Conflict Resolution**: Server detects simultaneous updates; non-destructively merges metadata while preserving call history, and records conflicts in `SyncConflict`.
-- **Offline Simulator**: Toggle the online/offline pill in the header to simulate network disconnection and test offline cold calling.
+- `DATABASE_URL`: Supabase PostgreSQL session-pooler connection string using `postgresql://...`, not SQLAlchemy's `postgresql+psycopg://...`.
+- `JWT_SECRET_KEY`: random signing key of at least 32 bytes.
+- `SUPABASE_URL`: project URL.
+- `SUPABASE_SERVICE_ROLE_KEY`: server-side Storage credential. Never use a `NEXT_PUBLIC_` prefix or expose it in browser code.
+- `SUPABASE_STORAGE_BUCKET`: defaults to `crm-contracts`. Create a private bucket with that name.
 
-### 2. Dedicated Cold-Calling Cockpit (Section 37)
-- **3-Column Layout**:
-  - **Left**: Customer contact details, industry, previous terminal provider, and tags.
-  - **Center**: Live duration timer, one-click outcome dispositions (Interested, Converted, Callback Requested, etc.), call notes, next action, and inline callback scheduler.
-  - **Right**: Complete chronological conversation timeline.
+Use Supabase's supplied connection/TLS parameters. Certificate verification is not disabled. Choose a region close to the database. Initialization and migration are explicit administrator operations, not build steps.
 
-### 3. Multi-Team Dynamic RBAC (Sections 2–5, 16–18, 29)
-- Server-side scope filters prevent agents from viewing cross-team data.
-- Controlled "Assign to Team Leader" workflow.
-- Team-to-team transfers with approval tracking.
+For a fresh cloud CRM, configure the target connection and initial admin values in local `.env.local`, run `npm run db:init`, then remove the initial password variables.
 
-### 4. Automated Test Suite (Section 55 & 62)
-Run the full 14-test verification suite:
-```powershell
-& "C:\Program Files\PostgreSQL\17\pgAdmin 4\python\python.exe" run_tests.py
-```
-Includes full automated verification of Section 62: Final Acceptance Test.
+For existing records, take a consistent SQLite backup, configure the target connection in `.env.local`, and run `npm run db:migrate`. The migration reads the source without modifying it, imports the 28 model tables in one PostgreSQL transaction, verifies row counts and foreign keys, and refuses a target already containing CRM tables. It preserves IDs, ownership, passwords, financial records and history. Failed migrations roll back. Missing tables from older source databases are skipped. `SQLITE_PATH` selects a different source, such as `crm_live.db`.
+
+Uploaded documents are separate from database rows. Upload existing files from `uploads/contracts` into the private bucket with their stored filenames before using cloud downloads. Real PostgreSQL migration and Supabase Storage require verification with a configured project; local tests do not prove external connectivity.
+
+Vercel never falls back to local SQLite for CRM records. Without the cloud database or signing key, authenticated operations return HTTP 503. Cloud documents use Supabase Storage; local development uses the uploads directory.
+
+## Workflows
+
+The Node.js backend covers authentication and account lockout; roles; lead search, duplicate detection, profiles and deal closing; calls and callback completion; assignments and transfers; users and teams; dashboards and audit logs; CSV import/export; contracts and documents; expenses; payroll; employee sales and commissions; and monthly statistics.
+
+Offline bootstrap and queued mutations remain available. Successful retries are recognized; stale customer edits return conflicts and preserve server records for review. Telephony remains a simulation and the assistant remains rule-based, as in the original project. No real telephone or language-model provider is connected.
+
+List and report operations currently aggregate rows in the application. Replace these with SQL pagination/aggregation if the dataset grows substantially.
+
+## Verification
+
+Run `npm run typecheck`, `npm test`, `npm run build`, and `npm start`.
+
+Tests use an isolated temporary database and cover permissions, creation, duplicates, calls, callbacks, reassignment, closing, financial validation, CSV imports, offline retries/conflicts, reports and rollback.
+
+## Source layout
+
+- `src/app`: Next layout, homepage and API route handler.
+- `src/client/CRM.tsx`: client lifecycle and retained interface integration.
+- `src/server`: Node authentication, database adapter, workflow services, schemas and metadata seed.
+- `public/css` and `public/js`: retained interface assets, served by Next.
+- `scripts`: database initialization and SQLite-to-PostgreSQL migration.
+- `tests-node`: Node workflow regression tests.
+- `legacy/flask`: archived Python implementation and tests, unused by Next or Vercel.
+
+The app retires the old Flask service worker so outdated caches do not mask deployments. IndexedDB record caching and offline mutations remain; a first uncached page visit requires an internet connection.

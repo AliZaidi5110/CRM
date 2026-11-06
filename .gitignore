@@ -12,6 +12,9 @@ uploads/
 .venv/
 venv/
 .pytest_cache/
-public/
+node_modules/
+.next/
+.vercel/
+*.tsbuildinfo
 .codex/
 .agents/

@@ -1,0 +1,32 @@
+{
+  "name": "callpro-crm",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build --webpack",
+    "start": "next start",
+    "test": "node --import tsx --test tests-node/*.test.ts",
+    "db:init": "node --env-file-if-exists=.env.local --import tsx scripts/init-db.ts",
+    "db:migrate": "node --env-file-if-exists=.env.local --import tsx scripts/migrate-sqlite.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "16.4.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "pg": "^8.16.3",
+    "bcryptjs": "^3.0.2",
+    "jose": "^6.1.0",
+    "csv-parse": "^6.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "tsx": "^4.20.6",
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@types/pg": "^8.15.5"
+  },
+  "engines": { "node": ">=22.13.0" }
+}

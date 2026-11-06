@@ -1,0 +1,172 @@
+{
+  "REBUTTALS_DATA": [
+    {
+      "id": "happy_with_provider",
+      "tag": "happy",
+      "customer_says": "I\u2019m happy with my current provider.",
+      "agent_response": "Absolutely, Sir. I\u2019m not asking you to change today\u2014just let me check if I can save you money. What rate are you currently on?",
+      "context": "Acknowledge satisfaction, pivot immediately to rate comparison without pushing a commitment."
+    },
+    {
+      "id": "not_interested",
+      "tag": "objection",
+      "customer_says": "Not interested.",
+      "agent_response": "Fair enough. Just one thing\u2014if I could reduce your processing cost, would you at least compare the figures?",
+      "context": "Low friction challenge: ask for comparison only, not an immediate switch."
+    },
+    {
+      "id": "in_contract",
+      "tag": "contract",
+      "customer_says": "I\u2019m in contract.",
+      "agent_response": "No problem. When does it expire? I can simply check back closer to the renewal.",
+      "context": "Collect contract expiry date to schedule a warm callback before automatic rollover."
+    },
+    {
+      "id": "use_worldpay",
+      "tag": "competitor",
+      "customer_says": "I use Worldpay.",
+      "agent_response": "Got you. What are they charging you overall\u2014rate plus any terminal rental? Because with us, there's no contract, no rental\u2014just 1.25% per transaction.",
+      "context": "Worldpay frequently charges separate terminal rental (\u00a315-\u00a330/mo) and PCI compliance fees."
+    },
+    {
+      "id": "use_sumup",
+      "tag": "competitor",
+      "customer_says": "I use SumUp.",
+      "agent_response": "Sure. Roughly how much are you processing monthly? I\u2019ll tell you straight away if switching would make sense.",
+      "context": "SumUp charges a flat 1.69% - 1.75%. Any merchant doing >\u00a31,500/mo saves substantially on Shift4 (1.25% or 0.70%)."
+    },
+    {
+      "id": "rate_too_high",
+      "tag": "price",
+      "customer_says": "Your rate is too high.",
+      "agent_response": "I understand. What rate are you currently getting?",
+      "context": "Direct inquiry: often the customer doesn't know their blended rate or includes hidden fees."
+    },
+    {
+      "id": "send_email",
+      "tag": "brush_off",
+      "customer_says": "Send me an email.",
+      "agent_response": "Of course. Just so I send something relevant\u2014roughly what\u2019s your monthly card turnover?",
+      "context": "Qualify before emailing so you can send exact savings calculations instead of generic spam."
+    },
+    {
+      "id": "speak_to_partner",
+      "tag": "decision_maker",
+      "customer_says": "I need to speak to my partner.",
+      "agent_response": "Absolutely. Before you do, what would they need to know to make the decision?",
+      "context": "Arm the advocate with key figures (annual savings, zero rental, no contract)."
+    },
+    {
+      "id": "dont_want_change_machines",
+      "tag": "hardware",
+      "customer_says": "I don\u2019t want to change machines.",
+      "agent_response": "That\u2019s fine. The machine is the easy part\u2014the main point is what you\u2019re paying to process each transaction.",
+      "context": "Shift the focus from the physical hardware swap to recurring cashflow savings."
+    },
+    {
+      "id": "dont_pay_rental",
+      "tag": "rental",
+      "customer_says": "I don\u2019t pay rental.",
+      "agent_response": "Perfect. Then let\u2019s focus purely on your transaction rate\u2014what percentage are you currently paying?",
+      "context": "If they have purchased hardware (e.g. Zettle/SumUp/Square), their transaction rate is usually high (1.75%+)."
+    },
+    {
+      "id": "how_much_cost",
+      "tag": "price",
+      "customer_says": "How much does it cost?",
+      "agent_response": "It depends on your turnover, Sir. What are you roughly doing in card payments each month?",
+      "context": "Anchor pricing to their turnover tier: 1.25% under \u00a35k, 0.70% over \u00a35k."
+    },
+    {
+      "id": "barely_take_cards",
+      "tag": "turnover",
+      "customer_says": "We barely take card payments.",
+      "agent_response": "Even better\u2014what\u2019s the rough monthly amount? If the saving is tiny, I\u2019ll tell you honestly.",
+      "context": "Disarms skepticism through transparency; with \u00a30 rental, low turnover merchants avoid terminal bleed."
+    },
+    {
+      "id": "too_busy",
+      "tag": "brush_off",
+      "customer_says": "I\u2019m too busy.",
+      "agent_response": "I\u2019ll take 20 seconds, Sir\u2014who are you currently processing with?",
+      "context": "Ask for only 20 seconds and a single piece of factual data."
+    },
+    {
+      "id": "call_me_later",
+      "tag": "callback",
+      "customer_says": "Call me later.",
+      "agent_response": "Absolutely. What time suits you better\u2014later today or tomorrow?",
+      "context": "Give binary choice (today or tomorrow) to lock in an explicit callback time."
+    },
+    {
+      "id": "not_decision_maker",
+      "tag": "decision_maker",
+      "customer_says": "I\u2019m not the decision maker.",
+      "agent_response": "No problem. Who normally handles your card payments?",
+      "context": "Identify the financial controller, owner, or director by name and best contact time."
+    }
+  ],
+  "CALL_FLOWS": {
+    "opening": {
+      "title": "Attention Grabbing Opening",
+      "script": "Hi Sir, good afternoon! {agent_name} here, Key Accounts Manager. I\u2019ll keep it brief\u2014we\u2019re helping UK businesses cut their card-machine costs, so I just wanted to check who you\u2019re currently using?"
+    },
+    "branches": [
+      {
+        "trigger": "If Worldpay",
+        "script": "Got you. And are you paying a monthly rental on that? Because with us, there\u2019s no contract, no rental\u2014just 1.25% per transaction. Just so I can see if it\u2019s actually worth your time, Sir\u2014roughly what\u2019s your monthly card turnover?"
+      },
+      {
+        "trigger": "If Not Interested",
+        "script": "Fair enough, Sir. Just give me 20 seconds\u2014if I can\u2019t show you a saving, I\u2019ll get out of your way."
+      },
+      {
+        "trigger": "If They Ask For Email",
+        "script": "Absolutely. Just one figure so I don\u2019t waste your time\u2014what\u2019s your approximate monthly card turnover?"
+      },
+      {
+        "trigger": "If Happy With Current Provider",
+        "script": "That\u2019s good to hear. I\u2019m not here to fix something that isn\u2019t broken\u2014I just want to see if we can make the same setup cheaper."
+      }
+    ],
+    "closer_rules": [
+      "Ask questions instead of giving a long explanation.",
+      "Find out the current provider, rate/fees and approximate monthly card turnover.",
+      "Use the customer\u2019s answer to continue the conversation rather than jumping into a full pitch.",
+      "Keep the first response short\u2014aim to earn another 10\u201320 seconds.",
+      "Never claim a competitor charges a specific fee unless you have confirmed it applies to that customer\u2019s agreement."
+    ]
+  },
+  "PRICING_PLANS": {
+    "shift4": {
+      "name": "Shift4 Card Machine Plan",
+      "features": [
+        "No Rental",
+        "No Contract",
+        "No Monthly Fee"
+      ],
+      "rates": {
+        "tier_under_5k": 1.25,
+        "tier_over_5k": 0.7,
+        "amex": 1.9,
+        "cnp": 1.99
+      },
+      "description": "If the turnover is less than \u00a35,000 we offer 1.25%, else we reduce to 0.70% for debit & credit both. Amex is 1.90%, CNP is 1.99%."
+    },
+    "mypos": {
+      "name": "myPOS Card Machine Plan",
+      "features": [
+        "Low Transaction Rates",
+        "Quick Settlement"
+      ],
+      "rates": {
+        "debit": 0.32,
+        "credit": 0.66,
+        "auth_fee_pence": 3,
+        "monthly_rental": 25.0,
+        "contract_months": 18
+      },
+      "description": "Debit 0.32%, Credit 0.66%, Auth 3p, Rental \u00a325, Contract Terms 18 months."
+    }
+  }
+}

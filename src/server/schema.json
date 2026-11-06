@@ -1,0 +1,1756 @@
+{
+  "call_dispositions": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "code": {
+      "type": "VARCHAR(50)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "name": {
+      "type": "VARCHAR(100)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "category": {
+      "type": "VARCHAR(50)",
+      "nullable": true,
+      "default": "General",
+      "primary": false
+    },
+    "color": {
+      "type": "VARCHAR(30)",
+      "nullable": true,
+      "default": "#64748B",
+      "primary": false
+    },
+    "is_conversion": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": false,
+      "primary": false
+    },
+    "is_callback": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": false,
+      "primary": false
+    },
+    "is_system": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": true,
+      "primary": false
+    },
+    "sort_order": {
+      "type": "INTEGER",
+      "nullable": true,
+      "default": 0,
+      "primary": false
+    }
+  },
+  "lead_statuses": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "code": {
+      "type": "VARCHAR(50)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "name": {
+      "type": "VARCHAR(100)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "color": {
+      "type": "VARCHAR(30)",
+      "nullable": true,
+      "default": "#6366F1",
+      "primary": false
+    },
+    "sort_order": {
+      "type": "INTEGER",
+      "nullable": true,
+      "default": 0,
+      "primary": false
+    },
+    "is_terminal": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": false,
+      "primary": false
+    },
+    "is_converted": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": false,
+      "primary": false
+    },
+    "is_system": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": true,
+      "primary": false
+    }
+  },
+  "permissions": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "code": {
+      "type": "VARCHAR(100)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "name": {
+      "type": "VARCHAR(100)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "category": {
+      "type": "VARCHAR(50)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    }
+  },
+  "roles": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "name": {
+      "type": "VARCHAR(50)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "display_name": {
+      "type": "VARCHAR(100)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "description": {
+      "type": "VARCHAR(255)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "is_system": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": true,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "tags": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "name": {
+      "type": "VARCHAR(50)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "color": {
+      "type": "VARCHAR(30)",
+      "nullable": true,
+      "default": "#3B82F6",
+      "primary": false
+    }
+  },
+  "role_permissions": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "role_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "permission_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    }
+  },
+  "users": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "username": {
+      "type": "VARCHAR(80)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "email": {
+      "type": "VARCHAR(120)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "password_hash": {
+      "type": "VARCHAR(255)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "full_name": {
+      "type": "VARCHAR(120)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "phone": {
+      "type": "VARCHAR(50)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "role_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "is_active": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": true,
+      "primary": false
+    },
+    "deleted_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "failed_login_count": {
+      "type": "INTEGER",
+      "nullable": true,
+      "default": 0,
+      "primary": false
+    },
+    "locked_until": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "last_login_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "two_factor_secret": {
+      "type": "VARCHAR(64)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "two_factor_enabled": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": false,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "updated_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "audit_logs": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "user_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "action": {
+      "type": "VARCHAR(80)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "entity_type": {
+      "type": "VARCHAR(50)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "entity_id": {
+      "type": "VARCHAR(50)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "summary": {
+      "type": "VARCHAR(255)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "details": {
+      "type": "JSON",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "ip_address": {
+      "type": "VARCHAR(60)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "user_agent": {
+      "type": "VARCHAR(255)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "devices": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "user_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "device_name": {
+      "type": "VARCHAR(120)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "device_token": {
+      "type": "VARCHAR(255)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "ip_address": {
+      "type": "VARCHAR(60)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "user_agent": {
+      "type": "VARCHAR(255)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "last_active_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "last_sync_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "is_revoked": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": false,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "employee_commission_payouts": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "employee_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "period": {
+      "type": "VARCHAR(7)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "amount_pkr": {
+      "type": "NUMERIC(12, 2)",
+      "nullable": false,
+      "default": 0,
+      "primary": false
+    },
+    "status": {
+      "type": "VARCHAR(20)",
+      "nullable": false,
+      "default": "PENDING",
+      "primary": false
+    },
+    "notes": {
+      "type": "VARCHAR(500)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "updated_at": {
+      "type": "DATETIME",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    }
+  },
+  "employee_monthly_sales_stats": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "employee_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "period": {
+      "type": "VARCHAR(7)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "sales_count": {
+      "type": "INTEGER",
+      "nullable": false,
+      "default": 0,
+      "primary": false
+    },
+    "sales_amount_gbp": {
+      "type": "NUMERIC(12, 2)",
+      "nullable": false,
+      "default": 0,
+      "primary": false
+    },
+    "commission_amount_gbp": {
+      "type": "NUMERIC(12, 2)",
+      "nullable": false,
+      "default": 0,
+      "primary": false
+    },
+    "imported_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "imported_at": {
+      "type": "DATETIME",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    }
+  },
+  "employee_salaries": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "employee_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "period": {
+      "type": "VARCHAR(7)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "amount": {
+      "type": "NUMERIC(12, 2)",
+      "nullable": false,
+      "default": 0,
+      "primary": false
+    },
+    "status": {
+      "type": "VARCHAR(20)",
+      "nullable": false,
+      "default": "PENDING",
+      "primary": false
+    },
+    "notes": {
+      "type": "VARCHAR(500)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "updated_at": {
+      "type": "DATETIME",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    }
+  },
+  "employee_sales": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "employee_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "customer_name": {
+      "type": "VARCHAR(180)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "business_name": {
+      "type": "VARCHAR(180)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "sale_amount": {
+      "type": "NUMERIC(12, 2)",
+      "nullable": false,
+      "default": 0,
+      "primary": false
+    },
+    "commission_amount": {
+      "type": "NUMERIC(12, 2)",
+      "nullable": false,
+      "default": 0,
+      "primary": false
+    },
+    "commission_status": {
+      "type": "VARCHAR(20)",
+      "nullable": false,
+      "default": "PENDING",
+      "primary": false
+    },
+    "sale_date": {
+      "type": "DATE",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "notes": {
+      "type": "VARCHAR(500)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    }
+  },
+  "expenses": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "category": {
+      "type": "VARCHAR(30)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "description": {
+      "type": "VARCHAR(255)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "amount": {
+      "type": "NUMERIC(12, 2)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "incurred_on": {
+      "type": "DATE",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "created_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    }
+  },
+  "export_jobs": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "user_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "entity_type": {
+      "type": "VARCHAR(50)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "filter_params": {
+      "type": "JSON",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "format": {
+      "type": "VARCHAR(20)",
+      "nullable": true,
+      "default": "csv",
+      "primary": false
+    },
+    "row_count": {
+      "type": "INTEGER",
+      "nullable": true,
+      "default": 0,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "import_jobs": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "user_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "filename": {
+      "type": "VARCHAR(255)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "total_rows": {
+      "type": "INTEGER",
+      "nullable": true,
+      "default": 0,
+      "primary": false
+    },
+    "imported_count": {
+      "type": "INTEGER",
+      "nullable": true,
+      "default": 0,
+      "primary": false
+    },
+    "duplicate_count": {
+      "type": "INTEGER",
+      "nullable": true,
+      "default": 0,
+      "primary": false
+    },
+    "invalid_count": {
+      "type": "INTEGER",
+      "nullable": true,
+      "default": 0,
+      "primary": false
+    },
+    "failed_count": {
+      "type": "INTEGER",
+      "nullable": true,
+      "default": 0,
+      "primary": false
+    },
+    "status": {
+      "type": "VARCHAR(30)",
+      "nullable": true,
+      "default": "COMPLETED",
+      "primary": false
+    },
+    "error_summary": {
+      "type": "JSON",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "sync_queue": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "local_id": {
+      "type": "VARCHAR(64)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "server_id": {
+      "type": "VARCHAR(64)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "user_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "device_id": {
+      "type": "VARCHAR(64)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "operation": {
+      "type": "VARCHAR(20)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "entity_type": {
+      "type": "VARCHAR(50)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "entity_id": {
+      "type": "VARCHAR(64)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "payload": {
+      "type": "JSON",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "sync_status": {
+      "type": "VARCHAR(30)",
+      "nullable": true,
+      "default": "PENDING",
+      "primary": false
+    },
+    "retry_count": {
+      "type": "INTEGER",
+      "nullable": true,
+      "default": 0,
+      "primary": false
+    },
+    "error_message": {
+      "type": "TEXT",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "client_timestamp": {
+      "type": "VARCHAR(50)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "processed_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "teams": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "name": {
+      "type": "VARCHAR(100)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "description": {
+      "type": "VARCHAR(255)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "team_leader_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "is_active": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": true,
+      "primary": false
+    },
+    "deleted_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "updated_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "customers": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "code": {
+      "type": "VARCHAR(50)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "first_name": {
+      "type": "VARCHAR(80)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "last_name": {
+      "type": "VARCHAR(80)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "full_name": {
+      "type": "VARCHAR(160)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "company_name": {
+      "type": "VARCHAR(160)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "phone": {
+      "type": "VARCHAR(50)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "secondary_phone": {
+      "type": "VARCHAR(50)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "email": {
+      "type": "VARCHAR(120)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "address": {
+      "type": "VARCHAR(255)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "city": {
+      "type": "VARCHAR(100)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "postcode": {
+      "type": "VARCHAR(30)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "country": {
+      "type": "VARCHAR(100)",
+      "nullable": true,
+      "default": "United Kingdom",
+      "primary": false
+    },
+    "industry": {
+      "type": "VARCHAR(100)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "customer_type": {
+      "type": "VARCHAR(50)",
+      "nullable": true,
+      "default": "Lead",
+      "primary": false
+    },
+    "lead_source": {
+      "type": "VARCHAR(100)",
+      "nullable": true,
+      "default": "Cold Call",
+      "primary": false
+    },
+    "previous_provider": {
+      "type": "VARCHAR(100)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "assigned_team_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "assigned_agent_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "updated_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "last_contacted_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "lead_status": {
+      "type": "VARCHAR(50)",
+      "nullable": true,
+      "default": "NEW",
+      "primary": false
+    },
+    "priority": {
+      "type": "VARCHAR(20)",
+      "nullable": true,
+      "default": "MEDIUM",
+      "primary": false
+    },
+    "last_contact_date": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "next_callback_date": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "tags_list": {
+      "type": "JSON",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "custom_fields": {
+      "type": "JSON",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "notes": {
+      "type": "TEXT",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "is_active": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": true,
+      "primary": false
+    },
+    "deleted_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "updated_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "sync_conflicts": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "sync_item_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "entity_type": {
+      "type": "VARCHAR(50)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "entity_id": {
+      "type": "VARCHAR(64)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "server_data": {
+      "type": "JSON",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "client_data": {
+      "type": "JSON",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "resolution_strategy": {
+      "type": "VARCHAR(50)",
+      "nullable": true,
+      "default": "SERVER_RULES",
+      "primary": false
+    },
+    "is_resolved": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": false,
+      "primary": false
+    },
+    "resolved_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "resolved_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "team_members": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "team_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "user_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "is_primary": {
+      "type": "BOOLEAN",
+      "nullable": true,
+      "default": true,
+      "primary": false
+    },
+    "joined_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "callbacks": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "customer_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "agent_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "team_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "scheduled_at": {
+      "type": "DATETIME",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "reason": {
+      "type": "VARCHAR(255)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "priority": {
+      "type": "VARCHAR(20)",
+      "nullable": true,
+      "default": "MEDIUM",
+      "primary": false
+    },
+    "reminder_minutes": {
+      "type": "INTEGER",
+      "nullable": true,
+      "default": 15,
+      "primary": false
+    },
+    "status": {
+      "type": "VARCHAR(30)",
+      "nullable": true,
+      "default": "PENDING",
+      "primary": false
+    },
+    "notes": {
+      "type": "TEXT",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "completed_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "completed_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "updated_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "calls": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "call_code": {
+      "type": "VARCHAR(50)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "customer_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "agent_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "team_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "call_type": {
+      "type": "VARCHAR(30)",
+      "nullable": true,
+      "default": "Outbound",
+      "primary": false
+    },
+    "duration_seconds": {
+      "type": "INTEGER",
+      "nullable": true,
+      "default": 0,
+      "primary": false
+    },
+    "outcome": {
+      "type": "VARCHAR(80)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "notes": {
+      "type": "TEXT",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "next_action": {
+      "type": "VARCHAR(255)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "callback_date": {
+      "type": "VARCHAR(30)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "callback_time": {
+      "type": "VARCHAR(30)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "telephony_session_id": {
+      "type": "VARCHAR(100)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "recording_url": {
+      "type": "VARCHAR(255)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "contracts": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "customer_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "business_name": {
+      "type": "VARCHAR(180)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "customer_name": {
+      "type": "VARCHAR(180)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "contract_status": {
+      "type": "VARCHAR(30)",
+      "nullable": false,
+      "default": "PENDING",
+      "primary": false
+    },
+    "commission_status": {
+      "type": "VARCHAR(20)",
+      "nullable": false,
+      "default": "PENDING",
+      "primary": false
+    },
+    "commission_amount": {
+      "type": "NUMERIC(12, 2)",
+      "nullable": false,
+      "default": 0,
+      "primary": false
+    },
+    "original_filename": {
+      "type": "VARCHAR(255)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "stored_filename": {
+      "type": "VARCHAR(255)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "notes": {
+      "type": "TEXT",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "updated_at": {
+      "type": "DATETIME",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    }
+  },
+  "customer_tags": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "customer_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "tag_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    }
+  },
+  "lead_assignments": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "customer_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "from_user_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "to_user_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "from_team_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "to_team_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "assigned_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "reason": {
+      "type": "VARCHAR(255)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "priority": {
+      "type": "VARCHAR(20)",
+      "nullable": true,
+      "default": "MEDIUM",
+      "primary": false
+    },
+    "notes": {
+      "type": "TEXT",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "status": {
+      "type": "VARCHAR(30)",
+      "nullable": true,
+      "default": "ACCEPTED",
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "lead_transfers": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "customer_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "from_agent_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "target_type": {
+      "type": "VARCHAR(30)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "target_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "reason": {
+      "type": "VARCHAR(255)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "notes": {
+      "type": "TEXT",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "status": {
+      "type": "VARCHAR(30)",
+      "nullable": true,
+      "default": "PENDING",
+      "primary": false
+    },
+    "resolved_by_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "resolved_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  },
+  "conversations": {
+    "id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": true
+    },
+    "customer_id": {
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "agent_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "call_id": {
+      "type": "VARCHAR(36)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "interaction_type": {
+      "type": "VARCHAR(50)",
+      "nullable": true,
+      "default": "CALL",
+      "primary": false
+    },
+    "outcome": {
+      "type": "VARCHAR(80)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "summary": {
+      "type": "TEXT",
+      "nullable": false,
+      "default": null,
+      "primary": false
+    },
+    "next_action": {
+      "type": "VARCHAR(255)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "callback_info": {
+      "type": "VARCHAR(255)",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "notes": {
+      "type": "TEXT",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    },
+    "created_at": {
+      "type": "DATETIME",
+      "nullable": true,
+      "default": null,
+      "primary": false
+    }
+  }
+}
